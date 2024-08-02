@@ -13,13 +13,10 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
-import okhttp3.OkHttpClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.TimeZone;
 
 @Slf4j
@@ -32,15 +29,8 @@ public class StartupValleyApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(StartupValleyApplication.class, args);
 
-		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("k748496d18754a.user-app.krampoline.com", 8080));
-
-		OkHttpClient httpClient = new OkHttpClient.Builder()
-				.proxy(proxy)
-				.build();
-
 		log.info("Initializing JDA");
 		JDA jda = JDABuilder.createDefault(context.getBean(DiscordBotToken.class).getToken())
-				.setHttpClient(httpClient)
 				.enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
 				.setChunkingFilter(ChunkingFilter.ALL)
 				.setMemberCachePolicy(MemberCachePolicy.ALL)
