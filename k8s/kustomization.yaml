@@ -7,3 +7,6 @@ configMapGenerator:
   - name: nginx
     files:
       - configs/default.conf
+  - name: app
+    files:
+      - configs/application.yml
