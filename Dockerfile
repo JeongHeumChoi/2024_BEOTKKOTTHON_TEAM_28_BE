@@ -1,9 +1,12 @@
-FROM gradle/7.3.3-jdk17 AS builder
+
 
 WORKDIR /app
 
 COPY src ./src
+COPY gradlew .
+COPY gradlew.bat .
 
+RUN chmod +x gradlew
 
 RUN ./gradlew clean build -x test
 
