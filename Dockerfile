@@ -1,3 +1,3 @@
 FROM openjdk:17-alpine
-COPY build/libs/*.jar app.jar
+RUN ./gradlew clean build -x test
 ENTRYPOINT ["java","-jar","/app.jar"]
