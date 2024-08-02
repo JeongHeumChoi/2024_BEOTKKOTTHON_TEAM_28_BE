@@ -45,7 +45,7 @@ public class WorkController {
             @PathVariable Long membersId,
             @PathVariable Long worksId,
             @RequestBody WorkTimeDto workTimeDto
-            ) {
+    ) {
         return ResponseDto.ok(workService.patchManageWork(userId, membersId, worksId, workTimeDto));
     }
 
