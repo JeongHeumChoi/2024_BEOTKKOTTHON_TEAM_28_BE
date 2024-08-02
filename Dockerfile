@@ -2,14 +2,11 @@ FROM gradle:7.3.3-jdk17 AS builder
 
 WORKDIR /app
 
+COPY gradlew .
 COPY build.gradle.kts settings.gradle.kts ./
 COPY gradle ./gradle
 
-RUN gradle build -x test --no-daemon
-
 COPY src ./src
-COPY gradlew .
-COPY gradlew.bat .
 
 RUN chmod +x gradlew
 
