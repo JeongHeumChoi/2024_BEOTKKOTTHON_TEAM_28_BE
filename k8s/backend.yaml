@@ -16,7 +16,6 @@ spec:
         - name: backend
           # 여러분의 backend image 주소를 입력해주세요.
           image: krmp-d2hub-idock.9rum.cc/dev-test/repo_d6eb92a38865
-          command: ["sleep","100000000"]
           volumeMounts:
             - name: app-volume
               mountPath: /usr/src/build/resources
