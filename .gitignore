@@ -6,7 +6,8 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # Credentials
-src/main/resources/application-prod.yml
+k8s/configs/application.yml
+src/main/resources/application.yml
 src/main/resources/application-local.yml
 
 .idea
