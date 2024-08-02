@@ -56,13 +56,13 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-mail')
 }
 
-task copyGitSubmodule(type: Copy) {
-	copy {
-		from './startup-valley-properties'
-		include '*.yml'
-		into './src/main/resources'
-	}
-}
+//task copyGitSubmodule(type: Copy) {
+//	copy {
+//		from './startup-valley-properties'
+//		include '*.yml'
+//		into './src/main/resources'
+//	}
+//}
 
 tasks.named('test') {
 	useJUnitPlatform()
