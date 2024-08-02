@@ -1,21 +1,9 @@
-FROM gradle:7.3.3-jdk17 AS builder
+FROM gradle:8.2.1-jdk17 AS builder
+COPY . /usr/src
+WORKDIR /usr/src
+RUN gradle wrapper --gradle-version 8.2.1
+RUN ./gradlew build
 
-WORKDIR /app
-
-COPY gradlew .
-COPY build.gradle.kts settings.gradle.kts ./
-COPY gradle ./gradle
-
-COPY src ./src
-
-RUN chmod +x gradlew
-
-RUN ./gradlew clean build -x test
-
-
-FROM openjdk:17-alpine
-
-COPY --from=builder /app/build/libs/*.jar /app/app.jar
-
-#COPY build/libs/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:17-jdk-alpine
+COPY --from=builder /usr/src/build/libs/demo-0.0.1-SNAPSHOT.jar /usr/app/app.jar
+ENTRYPOINT ["java","-jar","/usr/app/app.jar"]
