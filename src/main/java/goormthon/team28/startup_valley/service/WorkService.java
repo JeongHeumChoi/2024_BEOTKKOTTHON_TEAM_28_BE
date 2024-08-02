@@ -285,6 +285,9 @@ public class WorkService {
         Work work = workRepository.findByIdAndOwner(worksId, targetMember)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_WORK));
         work.updateTime(workTimeDto.startAt(), workTimeDto.endAt());
+        long todayWork = Duration.between(workTimeDto.startAt(), workTimeDto.endAt()).toMinutes();
+        Long totalTime = targetMember.getTotalMinute() + todayWork;
+        memberRepository.updateTotalMinute(targetMember.getId(), totalTime);
 
         return Boolean.TRUE;
     }
