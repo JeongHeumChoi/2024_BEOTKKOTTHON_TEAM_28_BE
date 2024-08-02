@@ -2,7 +2,7 @@ FROM gradle:8.2.1-jdk17 AS builder
 
 WORKDIR /usr/src
 
-COPY src /usr/src
+COPY . .
 RUN gradle wrapper --gradle-version 8.2.1
 RUN chmod +x gradlew
 RUN ./gradlew clean build -x test
